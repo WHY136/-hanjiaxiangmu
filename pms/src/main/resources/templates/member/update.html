@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div th:replace="commons/bar::topbar"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div th:replace="commons/bar::#sidebar(activeUri='members')"></div>
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<form th:action="@{/update}" method="post">
+						<h3><a class="btn btn-sm btn-success" href="/members">返回</a></h3>
+						<div class="form-group">
+							<label>id</label>
+							<input name="id" type="text" class="form-control" th:value="${member.id}" readonly="readonly" >
+						</div>
+					 <div class="form-group">
+						<label>MemberName</label>
+						<input name="memberName" type="text" class="form-control" placeholder="姓名" th:value="${member.memberName}" required="required">
+					 </div>
+					<div class="form-group">
+						<label>StudentId</label>
+						<input name="studentId" type="text" class="form-control" placeholder="学号"  th:value="${member.studentId}" required="required">
+					</div>
+					<div class="form-group">
+						<label>College</label>
+						<input name="college" type="text" class="form-control" placeholder="学院" th:value="${member.college}" required="required">
+					</div>
+					<div class="form-group">
+						<label>Major</label>
+						<input name="major" type="text" class="form-control" placeholder="专业"  th:value="${member.major}" required="required">
+					</div>
+					<div>
+						<label>Gender</label><br/>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="gender" value="1" th:checked="${member.gender==1}">
+							<label class="form-check-label">男</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="gender" value="0" th:checked="${member.gender==0}"  >
+							<label class="form-check-label">女</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>qq</label>
+						<input name="qq" type="text" class="form-control" placeholder="QQ号"  th:value="${member.qq}">
+					</div>
+					<div class="form-group">
+						<label>WorkRecord</label>
+						<input name="workRecord" type="text" class="form-control" placeholder="工作记录"  th:value="${member.workRecord}">
+					</div>
+					<div class="form-group">
+						<label for="cloth">会服尺码</label>
+						<select  name="clothSize" class="form-control" id="cloth" th:field="${member.clothSize}" th:value="${member.clothSize}">
+							<option value=""></option>
+							<option th:selected="${member.clothSize=='S'}" value="S">S</option>
+							<option th:selected="${member.clothSize=='M'}" value="M">M</option>
+							<option th:selected="${member.clothSize=='L'}" value="L">L</option>
+							<option th:selected="${member.clothSize=='XL'}" value="XL">XL</option>
+							<option th:selected="${member.clothSize=='XLL'}" value="XLL">XXL</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">修改</button>
+				   </form>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</main>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>人事管理平台</title>
+    <style type="text/css">
+        .bg-repeat{
+            background-image:url(asserts/img/background2.gif);
+            margin:0;
+            background-repeat:no-repeat;
+            background-size:cover;
+            text-align:center!important
+        }
+    </style>
+    <link rel="stylesheet " href="style.css">
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+</head>
+
+<body class="text-center" th:class="bg-repeat">
+<div>
+    <h1 style="font-family: 'Arial Black'">人事管理平台</h1>
+    <br>
+    <br>
+    <div class="textbox">
+       <i class="fa fa-user" aria-hidden="true"></i>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/}">管理员</a>
+    </div>
+    <br>
+    <br>
+    <div class="textbox">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <a class="btn btn-lg btn-primary btn-block" th:href="@{/memInfo}">普通成员</a>
+    </div>
+</div>
+</body>
+
+</html>

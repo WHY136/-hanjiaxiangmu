@@ -1,0 +1,15 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootmybatis.dao.LoginDao">
+    <select id="login" resultType="String">
+        select username from admin where username=#{username} and password=#{password}
+    </select>
+
+    <select id="selectPswByUser" parameterType="String" resultType="String">
+        select password from admin where username=#{username};
+    </select>
+    <update id="changePassword" parameterType="String">
+        update admin set password=#{newPassword}  where username=#{username}
+    </update>
+</mapper>

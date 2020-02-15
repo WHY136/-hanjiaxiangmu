@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div th:replace="commons/bar::topbar"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div th:replace="commons/bar::#sidebar(activeUri='members')"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h2><a class="btn btn-sm btn-success" href="/add" th:href="@{/add}" style="color: #1b1e21;">成员添加</a></h2>
+
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>memberName</th>
+									<th>studentId</th>
+									<th>college</th>
+									<th>major</th>
+									<th>gender</th>
+									<th>qq</th>
+									<th>workRecord</th>
+									<th>clothSize</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="member:${pageInfo.list}">
+									<td th:text="${member.memberName}"></td>
+									<td th:text="${member.studentId}"></td>
+									<td th:text="${member.college}"></td>
+									<td th:text="${member.major}"></td>
+									<td th:text="${member.gender}==0?'女':'男'"></td>
+									<td th:text="${member.qq}"></td>
+									<td th:text="${member.workRecord}"></td>
+									<td th:text="${member.clothSize}"></td>
+									<td>
+										<a class="btn btn-sm btn-primary" th:href="@{/update/}+${member.id}" style="color: #1d2124">修改</a>
+										<a class="btn btn-sm btn-danger" th:href="@{/delete/}+${member.id}" onclick="return confirm('确定删除？')">删除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>当前 <span th:text="${pageInfo.pageNum}"></span> 页，总<span th:text="${pageInfo.pages}"></span> 页，共<span th:text="${pageInfo.total}"></span> 条记录</p>
+						<a th:href="@{/members}">首页</a>
+						<a th:href="@{/members(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+						<a th:href="@{/members(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+						<a th:href="@{/members(pageNum=${pageInfo.pages})}">尾页</a>
+					</div>
+				</main>
+			</div>
+		</div>
+	</body>
+</html>

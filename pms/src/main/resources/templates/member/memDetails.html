@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div th:replace="commons/bar::topbar"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<!--引入侧边栏-->
+				<div th:replace="commons/bar::#sidebar(activeUri='dashboard')"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <h5><a class="btn btn-sm btn-success" href="/members">返回</a></h5>
+					<h2 style="color: #007bff" class="text-xl-center">个人信息</h2>
+
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+							<tr>
+								<th>memberName</th>
+								<th>studentId</th>
+								<th>college</th>
+								<th>major</th>
+								<th>gender</th>
+								<th>qq</th>
+								<th>workRecord</th>
+								<th>clothSize</th>
+
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="member2:${members2}">
+								<td th:text="${member2.memberName}"></td>
+								<td th:text="${member2.studentId}"></td>
+								<td th:text="${member2.college}"></td>
+								<td th:text="${member2.major}"></td>
+								<td th:text="${member2.gender}==0?'女':'男'"></td>
+								<td th:text="${member2.qq}"></td>
+								<td th:text="${member2.workRecord}"></td>
+								<td th:text="${member2.clothSize}"></td>
+
+							</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</main>
+			</div>
+		</div>
+	</body>
+</html>

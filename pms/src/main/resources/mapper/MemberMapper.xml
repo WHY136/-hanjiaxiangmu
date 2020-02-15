@@ -1,0 +1,39 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootmybatis.dao.MemberDao">
+    <select id="getAllMember" resultType="com.example.springbootmybatis.model.Member">
+        select * from mem
+    </select>
+
+    <select id="getMemberById" resultType="com.example.springbootmybatis.model.Member">
+        select * from mem where id=#{id}
+    </select>
+
+    <insert id="insertMember" parameterType="com.example.springbootmybatis.model.Member"  useGeneratedKeys="true" keyProperty="id">
+        insert into mem(memberName,studentId,college,major,gender,qq,workRecord,clothSize)
+        values(#{memberName},#{studentId},#{college},#{major},#{gender},#{qq},#{workRecord},#{clothSize})
+    </insert>
+
+    <delete id="deleteMemberById" parameterType="int">
+        delete from mem where id=#{id}
+    </delete>
+
+    <update id="updateMember" parameterType="com.example.springbootmybatis.model.Member">
+        update mem set
+         memberName=#{memberName},studentId=#{studentId},
+         college=#{college},major=#{major},gender=#{gender},
+         qq=#{qq}, workRecord=#{workRecord},clothSize=#{clothSize}
+         where id=#{id}
+    </update>
+
+
+    <select id="getMemberByName" resultType="com.example.springbootmybatis.model.Member"
+            parameterType="String">
+        select * from mem where memberName like #{memberName}
+    </select>
+
+    <select id="getMemberByStuId" parameterType="String" resultType="com.example.springbootmybatis.model.Member">
+        select * from mem where studentId=#{studentId}
+    </select>
+</mapper>

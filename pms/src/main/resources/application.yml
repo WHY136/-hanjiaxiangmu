@@ -1,0 +1,23 @@
+#基本配置mysql
+spring:
+  datasource:
+    username: root
+    password: 15029578587HHYhhy@
+    url: jdbc:mysql://127.0.0.1/students?useUnicode=true&serverTimezone=GMT%2b8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#禁用缓存：
+  thymeleaf:
+    cache: false
+#国际化配置
+  messages:
+    basename: i18n.login
+#配置mybatis,注意路径写法
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+# pagehelper(配置问题。不能一下用yml，一下用properties)
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
